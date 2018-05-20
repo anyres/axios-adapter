@@ -5,9 +5,8 @@ import {
   IHttpAdapter,
 } from "@anyres/core";
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import "rxjs/add/observable/fromPromise";
-import "rxjs/add/operator/map";
-import { Observable } from "rxjs/Observable";
+import { from as observableFrom, Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 export class AxiosAdapter implements IHttpAdapter {
 
@@ -21,15 +20,17 @@ export class AxiosAdapter implements IHttpAdapter {
         headers: options.headers,
       };
     }
-    return Observable.fromPromise<AxiosResponse<any>>(this.http.get(url, axiosRequestConfig))
-      .map((response) => {
-        return {
-          status: response.status,
-          headers: response.headers,
-          body: response.data,
-          json: () => response.data,
-        };
-      });
+    return observableFrom<AxiosResponse<any>>(this.http.get(url, axiosRequestConfig))
+      .pipe(
+        map((response) => {
+          return {
+            status: response.status,
+            headers: response.headers,
+            body: response.data,
+            json: () => response.data,
+          };
+        }),
+    );
   }
 
   public post(url: string, options?: IAnyresRequestOptions): Observable<IAnyresResponse> {
@@ -40,15 +41,17 @@ export class AxiosAdapter implements IHttpAdapter {
         headers: options.headers,
       };
     }
-    return Observable.fromPromise(this.http.post(url, options.body || {}, axiosRequestConfig))
-      .map((response) => {
-        return {
-          status: response.status,
-          headers: response.headers,
-          body: response.data,
-          json: () => response.data,
-        };
-      });
+    return observableFrom(this.http.post(url, options.body || {}, axiosRequestConfig))
+      .pipe(
+        map((response) => {
+          return {
+            status: response.status,
+            headers: response.headers,
+            body: response.data,
+            json: () => response.data,
+          };
+        }),
+    );
   }
 
   public put(url: string, options?: IAnyresRequestOptions): Observable<IAnyresResponse> {
@@ -59,15 +62,17 @@ export class AxiosAdapter implements IHttpAdapter {
         headers: options.headers,
       };
     }
-    return Observable.fromPromise(this.http.put(url, options.body || {}, axiosRequestConfig))
-      .map((response) => {
-        return {
-          status: response.status,
-          headers: response.headers,
-          body: response.data,
-          json: () => response.data,
-        };
-      });
+    return observableFrom(this.http.put(url, options.body || {}, axiosRequestConfig))
+      .pipe(
+        map((response) => {
+          return {
+            status: response.status,
+            headers: response.headers,
+            body: response.data,
+            json: () => response.data,
+          };
+        }),
+    );
   }
 
   public delete(url: string, options?: IAnyresRequestOptions): Observable<IAnyresResponse> {
@@ -78,15 +83,17 @@ export class AxiosAdapter implements IHttpAdapter {
         headers: options.headers,
       };
     }
-    return Observable.fromPromise(this.http.delete(url, axiosRequestConfig))
-      .map((response) => {
-        return {
-          status: response.status,
-          headers: response.headers,
-          body: response.data,
-          json: () => response.data,
-        };
-      });
+    return observableFrom(this.http.delete(url, axiosRequestConfig))
+      .pipe(
+        map((response) => {
+          return {
+            status: response.status,
+            headers: response.headers,
+            body: response.data,
+            json: () => response.data,
+          };
+        }),
+    );
   }
 
   public patch(url: string, options?: IAnyresRequestOptions): Observable<IAnyresResponse> {
@@ -97,15 +104,17 @@ export class AxiosAdapter implements IHttpAdapter {
         headers: options.headers,
       };
     }
-    return Observable.fromPromise(this.http.patch(url, options.body || {}, axiosRequestConfig))
-      .map((response) => {
-        return {
-          status: response.status,
-          headers: response.headers,
-          body: response.data,
-          json: () => response.data,
-        };
-      });
+    return observableFrom(this.http.patch(url, options.body || {}, axiosRequestConfig))
+      .pipe(
+        map((response) => {
+          return {
+            status: response.status,
+            headers: response.headers,
+            body: response.data,
+            json: () => response.data,
+          };
+        }),
+    );
   }
 
 }

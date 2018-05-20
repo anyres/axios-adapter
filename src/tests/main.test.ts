@@ -8,11 +8,9 @@ import {
   IResUpdate,
 } from "@anyres/core";
 import * as jsonServer from "json-server";
-import "rxjs/add/observable/fromPromise";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/toPromise";
+import { from as observableFrom } from "rxjs";
+import { catchError, map, switchMap } from "rxjs/operators";
+
 import { AxiosAdapter } from "..";
 // const jsonServer = require("json-server");
 const server = jsonServer.create();
