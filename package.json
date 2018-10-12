@@ -1,6 +1,6 @@
 {
   "name": "@anyres/axios-adapter",
-  "version": "0.1.2",
+  "version": "0.2.5",
   "description": "any resource",
   "main": "./dist/cmjs/index.js",
   "module": "./dist/es6/index.js",
@@ -16,7 +16,7 @@
   "author": "niuba <niuba.zbz@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@anyres/core": "^0.2.4",
+    "@anyres/core": "^0.2.5",
     "axios": "^0.18.0",
     "rxjs": "^6.1.0",
     "tslint": "^5.9.1",
