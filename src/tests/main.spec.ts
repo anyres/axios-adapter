@@ -1,17 +1,7 @@
-import {
-  Anyres,
-  AnyresCRUD,
-  IResCreate,
-  IResGet,
-  IResQuery,
-  IResQueryResult,
-  IResUpdate,
-} from "@anyres/core";
+import { Anyres, AnyresCRUD } from "@anyres/core";
 import * as jsonServer from "json-server";
-import { from as observableFrom } from "rxjs";
-import { catchError, map, switchMap } from "rxjs/operators";
-
 import { AxiosAdapter } from "..";
+
 // const jsonServer = require("json-server");
 const server = jsonServer.create();
 const router = jsonServer.router({
